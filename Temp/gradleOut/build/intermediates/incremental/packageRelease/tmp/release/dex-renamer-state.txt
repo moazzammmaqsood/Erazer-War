@@ -1,4 +1,0 @@
-#Fri May 08 00:47:30 PKT 2020
-base.0=C\:\\Users\\Sitsurf\\Documents\\erazer war\\Temp\\gradleOut\\build\\intermediates\\transforms\\dexMerger\\release\\0
-path.0=classes.dex
-renamed.0=classes.dex
