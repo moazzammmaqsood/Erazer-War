@@ -7,19 +7,25 @@ public class PlayerScript : MonoBehaviour
 {
 
     // private bool isPressed= false;
-    float releaseTime=0.7f;
+    float releaseTime=1.5f;
     public Touch touch;
     public float speedmod=0.01f;
-    // public Rigidbody rb;
+    PhysicMaterial  pm;
+    float distance=0;
+    float charge=0;
+    public Rigidbody anchor;
 
     // Start is called before the first frame update
     void Start()
     {
+        pm = GetComponent<BoxCollider>().material;
     
     }
 
 int count=0;
     // Update is called once per frame
+
+    
     void Update()
     {
         // Debug.Log("checkup");
@@ -35,7 +41,8 @@ int count=0;
             // float x=(float) Input.mousePosition.x;
 
             touch=Input.GetTouch(0);
-        GetComponent<SpringJoint>().spring=15;
+            pm.dynamicFriction=0f;
+        // GetComponent<SpringJoint>().spring=15;
             // float y=2.07
             count++;
             if(touch.phase==TouchPhase.Moved){
@@ -65,10 +72,12 @@ int count=0;
 
             }
             if(touch.phase==TouchPhase.Ended){
+        GetComponent<SpringJoint>().spring=1000;
         StartCoroutine(Release());
         Debug.Log("checkup");
 
             }
+
 
         //  Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(x, 2.17f,Input.mousePosition.z));
         //   transform.position = Vector3.Lerp(transform.position, touchedPos, Time.deltaTime);
@@ -76,12 +85,20 @@ int count=0;
             // rb.position=Camera.main.ScreenToWorldPoint(touchedPos);
 
         }
+
   if(count>0){
         // StartCoroutine(Release());
             
         }
 
 
+        void throweraser(){
+
+                distance=Vector3.Distance(anchor.transform.position,transform.position);
+                Debug.Log(distance.ToString());
+
+
+        }
 
     //  if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved) 
     //  {
@@ -111,10 +128,13 @@ int count=0;
     //      transform.position = objPosition;
     //  }
     IEnumerator Release(){
+
+
         yield return new WaitForSeconds(releaseTime);
         Debug.Log("checkrelease");
 
         GetComponent<SpringJoint>().spring=0;
+        pm.dynamicFriction=0.001f;
     }
 
     // void OnMouseDown(){
