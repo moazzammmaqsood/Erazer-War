@@ -5,96 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
- Vector3 tempPos;
-public void Update(){
-
-    if(Input.touchCount>0){
-        Touch  t = Input.GetTouch(0);
-        Vector3 tp = Camera.main.ScreenToWorldPoint(t.position);
-        tp.z= 0f;
-        tp.y = 0.332f;
-        transform.position = tp; 
-    }
-   
-    tempPos = transform.position;
-    tempPos.x+=.1f;
-    transform.position = tempPos;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // private bool isPressed= false;
-    // float releaseTime=1.5f;
-    // public Touch touch;
-    // public float speedmod=0.01f;
-    // PhysicMaterial  pm;
-    // float distance=0;
-    // float charge=0;
-    // public Rigidbody anchor;
+    float releaseTime=1.5f;
+    public Touch touch;
+    public float speedmod=0.01f;
+    PhysicMaterial  pm;
+    float distance=0;
+    float charge=0;
+    public Rigidbody anchor;
 
     // Start is called before the first frame update
-    // void Start()
-    // {
-    //     // pm = GetComponent<BoxCollider>().material;
+    void Start()
+    {
+        pm = GetComponent<BoxCollider>().material;
     
-    // }
+    }
 
-// int count=0;
+int count=0;
     // Update is called once per frame
 
     
-    // void Update()
-    // {
+    void Update()
+    {
         // Debug.Log("checkup");
 
     // if (Input.GInput.touchCount>0) 
@@ -102,91 +35,91 @@ public void Update(){
     //  Touch touch = Input.GetTouch(0); // get first touch since touch count is greater than zero
     //  count++;
         // Debug.Log("check");
-//     Plane plane=new Plane(Vector3.up,new Vector3(40.9f, 2.1f, -205.2f));
-//         // if(Input.GetMouseButtonDown(0)){
-//             if(Input.touchCount>0){
-//             // float x=(float) Input.mousePosition.x;
+    Plane plane=new Plane(Vector3.up,new Vector3(40.9f, 2.1f, -205.2f));
+        // if(Input.GetMouseButtonDown(0)){
+            if(Input.touchCount>0){
+            // float x=(float) Input.mousePosition.x;
 
-//             touch=Input.GetTouch(0);
-//             pm.dynamicFriction=0f;
-//         // GetComponent<SpringJoint>().spring=15;
-//             // float y=2.07
-//             count++;
-//             if(touch.phase==TouchPhase.Moved){
-//             Ray ray = Camera.main.ScreenPointToRay(touch.deltaPosition);
+            touch=Input.GetTouch(0);
+            pm.dynamicFriction=0f;
+        // GetComponent<SpringJoint>().spring=15;
+            // float y=2.07
+            count++;
+            if(touch.phase==TouchPhase.Moved){
+            Ray ray = Camera.main.ScreenPointToRay(touch.deltaPosition);
 
-//         Debug.Log("checkdown");
-
-
-//             transform.position=new Vector3(transform.position.x+touch.deltaPosition.x*speedmod,
-//                                         transform.position.y,
-//                                         transform.position.z+touch.deltaPosition.y*speedmod);
+        Debug.Log("checkdown");
 
 
-
-//             // float enter = 0.0f;
-
-//             // if (plane.Raycast(ray, out enter))
-//             // {
-//             //     //Get the point that is clicked
-//             //     Vector3 hitPoint = ray.GetPoint(enter);
-
-//             //     //Move your cube GameObject to the point where you clicked
-//             //     // m_Cube.transform.position = hitPoint;
-//             //     transform.position = hitPoint;                  // Vector3.Lerp(transform.position, hitPoint, Time.deltaTime);
-
-//             // }
-
-//             }
-//             if(touch.phase==TouchPhase.Ended){
-//         GetComponent<SpringJoint>().spring=1000;
-//         StartCoroutine(Release());
-//         Debug.Log("checkup");
-
-//             }
+            transform.position=new Vector3(transform.position.x+touch.deltaPosition.x*speedmod,
+                                        transform.position.y,
+                                        transform.position.z+touch.deltaPosition.y*speedmod);
 
 
-//         //  Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(x, 2.17f,Input.mousePosition.z));
-//         //   transform.position = Vector3.Lerp(transform.position, touchedPos, Time.deltaTime);
 
-//             // rb.position=Camera.main.ScreenToWorldPoint(touchedPos);
+            // float enter = 0.0f;
 
-//         }
+            // if (plane.Raycast(ray, out enter))
+            // {
+            //     //Get the point that is clicked
+            //     Vector3 hitPoint = ray.GetPoint(enter);
 
-//   if(count>0){
-//         // StartCoroutine(Release());
+            //     //Move your cube GameObject to the point where you clicked
+            //     // m_Cube.transform.position = hitPoint;
+            //     transform.position = hitPoint;                  // Vector3.Lerp(transform.position, hitPoint, Time.deltaTime);
+
+            // }
+
+            }
+            if(touch.phase==TouchPhase.Ended){
+        GetComponent<SpringJoint>().spring=1000;
+        StartCoroutine(Release());
+        Debug.Log("checkup");
+
+            }
+
+
+        //  Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(x, 2.17f,Input.mousePosition.z));
+        //   transform.position = Vector3.Lerp(transform.position, touchedPos, Time.deltaTime);
+
+            // rb.position=Camera.main.ScreenToWorldPoint(touchedPos);
+
+        }
+
+  if(count>0){
+        // StartCoroutine(Release());
             
-//         }
+        }
 
 
-//         void throweraser(){
+        void throweraser(){
 
-//                 distance=Vector3.Distance(anchor.transform.position,transform.position);
-//                 Debug.Log(distance.ToString());
+                distance=Vector3.Distance(anchor.transform.position,transform.position);
+                Debug.Log(distance.ToString());
 
 
-//         }
+        }
 
-//     //  if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved) 
-//     //  {
+    //  if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved) 
+    //  {
 
-//     //      // get the touch position from the screen touch to world point
-//     //      Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-//     //      // lerp and set the position of the current object to that of the touch, but smoothly over time.
-//     //       transform.position = Vector3.Lerp(transform.position, touchedPos, Time.deltaTime);
-//     //  }
-//     //  else if(count>1)
-//     //  {
-//     //     StartCoroutine(Release());
-//     //     count=0;
+    //      // get the touch position from the screen touch to world point
+    //      Vector3 touchedPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
+    //      // lerp and set the position of the current object to that of the touch, but smoothly over time.
+    //       transform.position = Vector3.Lerp(transform.position, touchedPos, Time.deltaTime);
+    //  }
+    //  else if(count>1)
+    //  {
+    //     StartCoroutine(Release());
+    //     count=0;
 
-//     //  }
-// //  }
-//         // if(isPressed){
-//         //     rb.position=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//         // }
+    //  }
+//  }
+        // if(isPressed){
+        //     rb.position=Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // }
         
-    // }
+    }
     //  void OnMouseDrag()
     //  {
     //      Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2f);
@@ -194,15 +127,15 @@ public void Update(){
  
     //      transform.position = objPosition;
     //  }
-    // IEnumerator Release(){
+    IEnumerator Release(){
 
 
-    //     yield return new WaitForSeconds(releaseTime);
-    //     Debug.Log("checkrelease");
+        yield return new WaitForSeconds(releaseTime);
+        Debug.Log("checkrelease");
 
-    //     GetComponent<SpringJoint>().spring=0;
-    //     pm.dynamicFriction=0.001f;
-    // }
+        GetComponent<SpringJoint>().spring=0;
+        pm.dynamicFriction=0.001f;
+    }
 
     // void OnMouseDown(){
     //     Debug.Log("check");

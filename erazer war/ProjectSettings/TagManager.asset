@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - plane
-  - PointA
-  - PointB
-  - Arrow
-  - Circle
+  - pointa
+  - pointb
+  - circle
+  - arrow
   layers:
   - Default
   - TransparentFX
