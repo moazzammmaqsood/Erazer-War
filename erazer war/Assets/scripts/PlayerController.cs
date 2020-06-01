@@ -8,14 +8,15 @@ public class PlayerController : MonoBehaviour
     private GameObject mousePointB;
     private GameObject arrow;
     private GameObject circle;
-
+    float speed=0;
+      public GameManager manager;
     //calc distance
     private float currentdistance;
     public float maxdistance=3f;
     private float safespace;
     private float shootpower; 
     private Touch touch;
-
+    private bool strike=false;
     private Vector3 shootDirection;
     // Start is called before the first frame update
     
@@ -27,19 +28,32 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update(){
-        Debug.Log("checkmouse");
+        // Debug.Log("checkmouse");
 
+    speed=GetComponent<Rigidbody>().velocity.magnitude;
+    if(strike&&speed<0.5){  
+        Vector3 dimxz=mousePointA.transform.position-transform.position;
+        float difference=dimxz.magnitude;
+        mousePointB.transform.position=transform.position+((dimxz/difference)* currentdistance*-1);
+        mousePointB.transform.position=new Vector3(mousePointB.transform.position.x,0.13f,mousePointB.transform.position.z);
+        strike=false;
+        manager.playerturn=false;   
+    }else if(speed>=0.5){
+        strike=true;
+        
+    }
 
-    if(Input.touchCount>0){
+    if(Input.touchCount>0 ){
 
              touch=Input.GetTouch(0);
              if(touch.phase==TouchPhase.Began){
-                     Vector3 dimxz=mousePointA.transform.position-transform.position;
-                    float difference=dimxz.magnitude;
-                 mousePointB.transform.position=transform.position+((dimxz/difference)* currentdistance*-1);
-    mousePointB.transform.position=new Vector3(mousePointB.transform.position.x,0.8f,mousePointB.transform.position.z);
+                    //  Vector3 dimxz=mousePointA.transform.position-transform.position;
+                    // float difference=dimxz.magnitude;
+                //  mousePointB.transform.position=transform.position+((dimxz/difference)* currentdistance*-1);
+    // mousePointB.transform.position=new Vector3(mousePointB.transform.position.x,0.8f,mousePointB.transform.position.z);
              }
         if(touch.phase==TouchPhase.Moved){
+            if(manager.playerturn){
               currentdistance=Vector3.Distance(mousePointA.transform.position,transform.position);
             if(currentdistance<=maxdistance){
                 safespace=currentdistance;
@@ -56,14 +70,18 @@ public class PlayerController : MonoBehaviour
     mousePointB.transform.position=new Vector3(mousePointB.transform.position.x,0.8f,mousePointB.transform.position.z);
     shootDirection= Vector3.Normalize(mousePointA.transform.position-transform.position);
     doarrowandcirclestuff();
+            }
               }
 
          if(touch.phase==TouchPhase.Ended){
-          Debug.Log("check end");
+        //   Debug.Log("check end");
+        if(manager.playerturn){
           Vector3 push=shootDirection*shootpower*-1;
           GetComponent<Rigidbody>().AddForce(push,ForceMode.Impulse);
         arrow.GetComponent<Renderer>().enabled=false;
-        circle.GetComponent<Renderer>().enabled=false;       
+        circle.GetComponent<Renderer>().enabled=false;    
+
+        }
     //    mousePointA.transform.position=new Vector3(transform.position.x,mousePointA.transform.position.y,transform.position.z);
         // mousePointB.transform.position=new Vector3(transform.position.x,mousePointB.transform.position.y,transform.position.z);
          }

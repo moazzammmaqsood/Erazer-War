@@ -10,7 +10,10 @@ public class MouseFollow : MonoBehaviour
     private Vector3 tempPos;
     public float speedmod=0.01f;
     private Touch touch;
+    private bool strike=false;
+    private float speed=0;
     GameObject player;
+    public GameManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,13 +26,28 @@ public class MouseFollow : MonoBehaviour
     {
         Plane plane=new Plane(Vector3.up,new Vector3(-0.087f, 0f, -9.978f));
      
+
+        speed=player.GetComponent<Rigidbody>().velocity.magnitude;
+
+        if(strike && speed<0.5){
+        
+ transform.position=new Vector3(player.transform.position.x+0.5f,
+                                        Offset,
+                                        player.transform.position.z+0.5f);
+            
+                 
+                  strike=false;
+        }else if(speed>=0.5){
+            strike=true;
+        }
+
        if(Input.touchCount>0){
 
              touch=Input.GetTouch(0);
         if(touch.phase==TouchPhase.Began){
-                  transform.position=new Vector3(player.transform.position.x+touch.deltaPosition.x*speedmod,
-                                        Offset,
-                                        player.transform.position.z+touch.deltaPosition.y*speedmod);
+                            //  transform.position=new Vector3(player.transform.position.x+touch.deltaPosition.x*speedmod,
+                            //             Offset,
+                            //             player.transform.position.z+touch.deltaPosition.y*speedmod);
         }
 
         if(touch.phase==TouchPhase.Moved){
@@ -38,9 +56,11 @@ public class MouseFollow : MonoBehaviour
 
         // tempPos=Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,transform.position.y,Input.mousePosition.z));
         // transform.position=new Vector3(tempPos.x,0.81f,tempPos.z); 
+        if(manager.playerturn){
      transform.position=new Vector3(transform.position.x+touch.deltaPosition.x*speedmod,
                                         Offset,
                                         transform.position.z+touch.deltaPosition.y*speedmod);
+                                        }
 
             // if (plane.Raycast(ray, out Offset))
             // {

@@ -9,6 +9,11 @@ TagManager:
   - pointb
   - circle
   - arrow
+  - Enemy
+  - enemypointa
+  - enemypointb
+  - enemyarrow
+  - enemycircle
   layers:
   - Default
   - TransparentFX
