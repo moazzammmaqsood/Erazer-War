@@ -16,11 +16,12 @@ public class GameManager : MonoBehaviour
 	public EnemyModelClass enemyclass;
 	public Material[] skins;
 	public bool playerturn;
-	Renderer render;
+	Renderer render;  	
 	public TextMeshProUGUI playerScoreText;
 	public TextMeshProUGUI enemyScoreText;
 	public Transform playerSpawn;
 	public Transform enemySpawn;
+	public TextMeshProUGUI startingText;
 
 	[HideInInspector]
 	public int startScore = 0;
@@ -31,6 +32,10 @@ public class GameManager : MonoBehaviour
 
 	private GameObject playerContainer;
 	private GameObject enemyContainer;
+
+	private bool startflag;
+	private 
+
 
 	private Rigidbody playerRB;
 	private Rigidbody enemyRB;

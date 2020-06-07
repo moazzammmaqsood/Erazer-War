@@ -18,6 +18,7 @@ TagManager:
   - enemygoal
   - playerContainer
   - enemyContainer
+  - startingtext
   layers:
   - Default
   - TransparentFX
