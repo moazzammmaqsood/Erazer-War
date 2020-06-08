@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class LevelSceneController : MonoBehaviour
 {
 
+    Button wp1,wp2,wp3,wp4,wp5;
+    int playerselect=0;
     int score=0;
     int playerlevel=0;
     int upgradelevel=0;
