@@ -19,6 +19,7 @@ TagManager:
   - playerContainer
   - enemyContainer
   - startingtext
+  - bgpanel
   layers:
   - Default
   - TransparentFX

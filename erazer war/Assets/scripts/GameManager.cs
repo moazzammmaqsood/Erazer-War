@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
 	private GameObject enemyContainer;
 
 	private bool startflag;
-	private 
 
 
 	private Rigidbody playerRB;
@@ -111,5 +110,6 @@ public class GameManager : MonoBehaviour
 		playerRB.velocity = new Vector3(0, 0, 0);
 		enemyRB.velocity = new Vector3(0, 0, 0);
 	}
+	
 
 }
