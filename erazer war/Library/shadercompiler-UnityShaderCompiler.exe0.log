@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Base path: E:/unity/2018.4.16f1/Editor/Data
 Cmd: initializeCompiler
 Cmd: initializeCompiler
@@ -32,6 +33,9 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+=======
+Base path: C:/Program Files/Unity/Hub/Editor/2018.4.18f1/Editor/Data
+>>>>>>> 23ad4b6218f68ea4e52cc844a0bd154eb848c442
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
@@ -39,3 +43,9 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+<<<<<<< HEAD
+=======
+Unhandled exception: Protocol error - unexpected end of data (did the Editor crash?)
+
+Quitting shader compiler process
+>>>>>>> 23ad4b6218f68ea4e52cc844a0bd154eb848c442

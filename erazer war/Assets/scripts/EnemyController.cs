@@ -41,14 +41,16 @@ public class EnemyController : MonoBehaviour
 			mousePointB.transform.position = new Vector3(mousePointB.transform.position.x, 0.8f, mousePointB.transform.position.z);
 			strike = false;
 			manager.playerturn = true;
+			manager.touchflag=false;
 		}
 		else if (speed >= 0.5)
 		{
 			strike = true;
+			manager.touchflag=true;
 
 		}
 
-		if (Input.touchCount > 0)
+		if (Input.touchCount > 0 && !manager.touchflag)
 		{
 
 			touch = Input.GetTouch(0);
@@ -145,4 +147,11 @@ public class EnemyController : MonoBehaviour
 		arrow.transform.localScale = new Vector3(1 + scaleX, 0.001f, 1 + scaleZ);
 		circle.transform.localScale = new Vector3(1 + scaleX, 0.001f, 1 + scaleZ);
 	}
+
+
+	void OnCollisionEnter(UnityEngine.Collision hit)
+{
+    string hitobject = hit.gameObject.tag;
+    Debug.Log(hitobject);
+}
 }
